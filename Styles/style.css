@@ -1,0 +1,160 @@
+/* The regular font */
+@font-face {
+    font-family: inter-reg;
+    src: url('../Fonts/Inter-Regular.ttf');
+}
+
+/* The bold font */
+@font-face {
+    font-family: inter-bold;
+    src: url('../Fonts/Inter-Bold.ttf');
+}
+
+/* The black/ extra bold font */
+@font-face {
+    font-family: inter-black;
+    src: url('../Fonts/Inter-Black.ttf');
+}
+
+/* Universal Selector */
+* {
+    font-family: inter-reg;
+}
+
+body{
+    background-color: #c6f5ed;
+}
+
+/* Nav Bar */
+nav {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+To add hover effects on the List Item of the Nav Bar
+.nav-li:hover {
+    box-shadow: 0 -5px 10px whitesmoke;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.nav-ul{
+    list-style: none;
+    padding: 0;
+}
+
+.nav-a{
+    position: relative;
+    display: inline-block;
+    padding: 5px 0;
+}
+
+.nav-a::after{
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: white; /* You can change the color here */
+    left: 0;
+    bottom: 0;
+    transition: width 0.3s ease; /* This controls the animation speed */
+}
+
+.nav-a:hover::after{
+    width: 100%; /* The underline will extend fully when hovered */
+}
+
+.custom-nav{
+    background-color: #11d7df;
+}
+
+/* The Search Bar in the Nav Bar */
+.search-input {
+    border: none;
+    border-radius: 5px;
+    height: 30px;
+}
+
+/* Placeholder of the Search Bar in the Nav Bar */
+.search-input::placeholder {
+    padding-left: 5px;
+}
+
+/* To hide the search bar by default */
+.search-bar {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-100%, -50%);
+    background-color: transparent;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    overflow-x: hidden !important;
+}
+
+/* To show the search bar when its ID is targeted */
+#search:target {
+    display: block;
+}
+
+/* Style for the magnifying glass icon */
+.search-icon {
+    display: block;
+    width: 50px;
+    height: 60px;
+    color: white;
+    background-color: transparent;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-100%, -50%);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center !important;
+}
+
+/* Resizing the Search Icon */
+.magnifying-glass-icon {
+    font-size: 25px;
+}
+
+/* Style for the magnifying glass icon container */
+.search-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* To hide the magnifying glass icon when the search bar is targeted */
+#search:target~.search-icon {
+    display: none;
+}
+
+/* Style for the close button */
+.close-btn {
+    display: block;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    text-decoration: none;
+    font-size: 24px;
+    color: #65451F;
+}
+
+.question-head{
+    color: #165366;
+    font-family: inter-bold;
+}

@@ -20,7 +20,9 @@
 
     <nav class="custom-nav navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand text-white nav-head fw-bold fs-3" href="#">Quiz App</a>
+            <a class="navbar-brand text-white nav-head fw-bold fs-3" href="#">
+                <img src="Images/logo.png" class="logo-img" alt="Logo">
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -29,7 +31,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav nav-ul me-auto mb-2 mb-lg-0">
                     <li class="nav-item nav-li">
-                        <a class="nav-link nav-a active text-white" aria-current="page" href="#">Home</a>
+                        <a class="nav-link nav-a active text-white" id="nav-text" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item nav-li">
                         <a class="nav-link nav-a active text-white" aria-current="page" href="#">About</a>
@@ -38,40 +40,40 @@
                         <a class="nav-link nav-a active text-white" aria-current="page" href="#">Login</a>
                     </li>
                 </ul>
-                <!-- <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form> -->
 
-                 <div
-                        class="search-box-div position-relative d-none d-lg-flex align-items-center justify-content-lg-end">
-                        <a href="#search" class="search-icon" id="search-icon">
-                            <span class="search-icon-container fs-1 d-block">
-                                <i class="fa-solid fa-magnifying-glass magnifying-glass-icon"
-                                    style="color: #ffffff;"></i>
-                            </span>
-                        </a>
+                <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass magnifying-glass-icon" id="search-icon"
+                        style="color: #ffffff;"></i>
+                    <input type="text" id="search-input" class="hidden" placeholder="Search">
+                </div>
 
-                        <div id="search" class="search-bar">
-                            <a href="#" class="close-btn text-dark">&times;</a>
-                            <input type="text" placeholder="Search" class="search-input">
-                        </div>
-                    </div>
             </div>
         </div>
     </nav>
 
 
-    <section class="quiz-sec mt-5">
+    <section class="quiz-sec mt-5 d-flex justify-content-center">
+        <div class="quiz-sub-sec">
+            <div class="inner-quiz-div">
+                <h1 class="question-head fs-2 text-center mb-5">QUESTION</h1>
+                <!-- A container containing all the Quiz questions -->
+                <div class="container-wrap d-flex justify-content-center">
+                    <div class="quiz-outter-container">
+                        <div id="quizContainer" class="custom-font">
 
-        <h1 class="question-head fs-2 text-center">QUESTION</h1>
-        <!-- A container containing all the Quiz questions -->
-        <div id="quizContainer">
 
+                        </div>
+                        <div class="btn-div mt-3">
+                            <!-- a button -->
+                            <button id="prevBtn" disabled>Previous</button>
+                            <button id="nextBtn" disabled>Next</button>
+                            <button id="submitBtn" disabled>submit</button>
+                        </div>
+                    </div>
+                    <!-- <div class="container-wrap"></div> -->
 
-        </div>
-        <!-- a button -->
-        <button id="nextBtn" onclick="showQuestions()">NEXT</button>
+                </div>
+            </div>
     </section>
 
 

@@ -1,191 +1,170 @@
-// // An Array of Objects to store all the Quiz questions.
-// var questions = [
-//     {
-//         question: 'Inside which HTML element do we put the JavaScript?',
-//         option1: 'scprit',
-//         option2: 'javascrip',
-//         option3: 'js',
-
-//         correctOption: 'script',
-//     },
-//     {
-//         question: 'Where is the correct place to insert a JavaScript?',
-//         option1: 'The <head> section',
-//         option2: 'The <body> section',
-//         option3: 'Both the <head> and "body" section are correct',
-//         correctOption: 'The <body> section',
-//     },
-//     {
-//         question: 'What is the correct syntax for referring to an external script called "xxx.js"?',
-//         option1: 'scripr href="xxx.js"',
-//         option2: 'scripr name="xxx.js"',
-//         option3: 'scripr src="xxx.js"',
-//         correctOption: 'scripr src="xxx.js"',
-//     }]
-
-
-// var index = 0
-// var nextBtn = document.getElementById("nextBtn")
-// var options = document.getElementsByName("option")
-
-// // The main function to replace the question once it's answered and the NEXT button is clicked.
-// function showQuestions() {
-//     nextBtn.disabled = true
-//     var questionBox = document.getElementById("quizContainer")
-//     questionBox.innerHTML = `<p>${questions[index].question}</p>
-//         <label>
-//             <input type="radio"   name="option" value="${questions[index].option1}" >
-//             ${questions[index].option1}
-//         </label>
-//         <br>
-//         <label>
-//             <input type="radio" name="option" value="${questions[index].option2}" >
-//                   ${questions[index].option2}
-//         </label>
-//         <br>
-//         <label>
-//             <input type="radio" name="option" value="${questions[index].option3}" >
-//              ${questions[index].option3}
-//         </label>
-
-// `
-//     // index++;
-
-
-//     // Enabling the NEXT button and getting the selected value of the Radio button.
-//     for (var i = 0; i < options.length; i++) {
-
-//         // if (options[i].checked) {
-//         //     console.log(options[i].value);
-
-//         // }
-
-//         options[i].addEventListener("click", function () {
-//             nextBtn.disabled = false
-//         })
-
-//     }
-// }
-
-//     function getSelectedOption() {
-//         var radioButtons = document.getElementsByName("option");
-//         for (var i = 0; i < radioButtons.length; i++) {
-//             if (radioButtons[i].checked) {
-//                 return radioButtons[i].value;
-//             }
-//         }
-//         return null;
-//     }
-
-//     nextBtn.addEventListener("click", function() {
-//         var selectedValue = getSelectedOption();
-//         if (selectedValue) {
-//             console.log("Selected Option:", selectedValue);
-//         }
-//         if (index < questions.length - 1) {
-//             index++;
-//             showQuestions();
-//         } else {
-//             console.log("Quiz finished!");
-//         }
-//     });
-
-
-
-// // Function Call.
-// showQuestions()
-
-
-
-// Array of Objects to store all the Quiz questions.
+// An array of objects storing the quiz questions and options
 var questions = [
     {
         question: 'Inside which HTML element do we put the JavaScript?',
-        option1: 'script',
-        option2: 'javascrip',
-        option3: 'js',
+        options: ['script', 'javascrip', 'js'], // 3 options
         correctOption: 'script',
     },
     {
         question: 'Where is the correct place to insert a JavaScript?',
-        option1: 'The <head> section',
-        option2: 'The <body> section',
-        option3: 'Both the <head> and <body> section are correct',
-        correctOption: 'The <body> section',
+        options: ['The head section', 'The body section', 'Both the head and body sections are correct'], // 3 options
+        correctOption: 'Both the head and body sections are correct',
     },
     {
         question: 'What is the correct syntax for referring to an external script called "xxx.js"?',
-        option1: 'scripr href="xxx.js"',
-        option2: 'scripr name="xxx.js"',
-        option3: 'scripr src="xxx.js"',
-        correctOption: 'scripr src="xxx.js"',
+        options: ['script href=xxx.js', 'script name=xxx.js', 'script src=xxx.js', 'link src=xxx.js'], // 4 options
+        correctOption: 'script src=xxx.js',
+    },
+    {
+        question: 'Which one is a JavaScript framework?',
+        options: ['React', 'Laravel', 'Django', 'Spring', 'Vue'], // 5 options
+        correctOption: 'React',
     }
 ];
 
+// Variables to keep track of the current question, score, and buttons
 var index = 0;
+var score = 0;
 var nextBtn = document.getElementById("nextBtn");
+var prevBtn = document.getElementById("prevBtn");
+var questionBox = document.getElementById("quizContainer");
 
-// The main function to display the question and its options.
-function showQuestions() {
-    nextBtn.disabled = true; // Disable the NEXT button initially
-    var questionBox = document.getElementById("quizContainer");
+// Function to update and display the current question
+function updateQuestion() {
+    var currentQuestion = questions[index];
+    var questionHTML = `<p class="fw-bold">${index + 1}. ${currentQuestion.question}</p>`;  // Add dynamic numbering
 
-    // Dynamically create the question and options
-    questionBox.innerHTML = `<p>${questions[index].question}</p>
-        <label>
-            <input type="radio" name="option" value="${questions[index].option1}">
-            ${questions[index].option1}
-        </label>
-        <br>
-        <label>
-            <input type="radio" name="option" value="${questions[index].option2}">
-            ${questions[index].option2}
-        </label>
-        <br>
-        <label>
-            <input type="radio" name="option" value="${questions[index].option3}">
-            ${questions[index].option3}
-        </label>
-    `;
+    // Generate the options dynamically based on how many options are in the current question
+    for (var i = 0; i < currentQuestion.options.length; i++) {
+        questionHTML += `<label>
+                             <input type="radio" name="option" value="${currentQuestion.options[i]}">
+                             ${currentQuestion.options[i]}
+                         </label><br>`;
+    }
 
-    // Reassign options and add event listeners for the new options
+    questionBox.innerHTML = questionHTML;  // Insert the dynamically generated question and options into the questionBox
+
+    // Enable the Next button only when an option is selected
+    selectingOptions();
+    
+    // Update the state of the Previous button (enable/disable)
+    updatePrevButtonState();
+
+    // Check if this is the last question, then change the "Next" button to "Submit"
+    if (index === questions.length - 1) {
+        nextBtn.innerHTML = "Submit";  // Change Next button text to "Submit"
+        nextBtn.removeEventListener('click', nextButtonHandler);  // Remove the existing next handler
+        nextBtn.addEventListener('click', submitQuiz);  // Add new handler for submitting the quiz
+    } else {
+        nextBtn.innerHTML = "Next";  // Reset it to "Next" for all other questions
+        nextBtn.removeEventListener('click', submitQuiz);  // Remove submit handler if added previously
+        nextBtn.addEventListener('click', nextButtonHandler);  // Add next button handler back
+    }
+}
+
+// Function to handle "Next" button logic
+function nextButtonHandler() {
+    var options = document.getElementsByName("option");
+    var selectedOption;
+    
+    // Find the selected option
+    for (var i = 0; i < options.length; i++) {
+        if (options[i].checked) {
+            selectedOption = options[i].value;
+            break;
+        }
+    }
+
+    // Check if the selected answer is correct
+    if (selectedOption === questions[index].correctOption) {
+        score++;  // Increase the score if the answer is correct
+    }
+
+    // Move to the next question if available
+    if (index < questions.length - 1) {
+        index++;  // Move to the next question
+        updateQuestion();  // Update the displayed question
+        nextBtn.disabled = true;  // Disable the Next button until a new option is selected
+    }
+}
+
+// Function to submit the quiz and display the final score
+function submitQuiz() {
+    // Check if the selected option is correct for the last question
+    var options = document.getElementsByName("option");
+    var selectedOption;
+
+    // Find the selected option
+    for (var i = 0; i < options.length; i++) {
+        if (options[i].checked) {
+            selectedOption = options[i].value;
+            break;
+        }
+    }
+
+    // Check if the selected answer is correct
+    if (selectedOption === questions[index].correctOption) {
+        score++;  // Increase the score if the answer is correct
+    }
+
+    // Display the final score
+    questionBox.innerHTML = `Quiz completed! Your score is ${score}/${questions.length}`;
+    nextBtn.style.display = "none";  // Hide the Next/Submit button
+    prevBtn.style.display = "none";  // Hide the Previous button
+}
+
+// Function to enable or disable the Previous button based on the current index
+function updatePrevButtonState() {
+    if (index === 0) {
+        prevBtn.disabled = true;  // Disable Previous button on the first question
+    } else {
+        prevBtn.disabled = false;  // Enable Previous button for other questions
+    }
+}
+
+// Event listener for the Previous button
+prevBtn.addEventListener('click', function() {
+    if (index > 0) {
+        index--;  // Move to the previous question
+        updateQuestion();  // Update the displayed question
+    }
+});
+
+// Function to check if an option is selected and enable the Next button
+function selectingOptions() {
     var options = document.getElementsByName("option");
     for (var i = 0; i < options.length; i++) {
-        options[i].addEventListener("change", function() {
-            nextBtn.disabled = false; // Enable the NEXT button once an option is selected
+        options[i].addEventListener("click", function() {
+            nextBtn.disabled = false;  // Enable Next button when an option is selected
         });
     }
 }
 
-// Function to get the selected option
-function getSelectedOption() {
-    var radioButtons = document.getElementsByName("option");
-    for (var i = 0; i < radioButtons.length; i++) {
-        if (radioButtons[i].checked) {
-            return radioButtons[i].value; // Return the value of the selected radio button
-        }
-    }
-    return null; // Return null if no radio button is selected
-}
+// Initialize the quiz by displaying the first question and disabling the Previous button
+updateQuestion();
 
-// Event listener for the NEXT button
-nextBtn.addEventListener("click", function() {
-    var selectedValue = getSelectedOption();
-    if (selectedValue) {
-        console.log("Selected Option:", selectedValue);
-    } else {
-        console.log("No option selected");
-    }
 
-    // Move to the next question only if index is within bounds
-    if (index < questions.length - 1) {
-        index++; // Increment the index to move to the next question
-        showQuestions(); // Show the next question
-    } else {
-        console.log("Quiz finished!");
-    }
+// -------------------------------------------------------------------------------------------------------------------
+
+// STYLING FUNCTIONALITIES
+
+// Get elements
+const searchIcon = document.getElementById('search-icon');
+const searchInput = document.getElementById('search-input');
+
+// Add event listener to the search icon
+searchIcon.addEventListener('click', function() {
+    searchIcon.style.display = 'none'; // Hide the magnifying glass icon
+    searchInput.classList.add('active'); // Show the search input
+    searchInput.style.display = 'block'; // Display the search bar
+    searchInput.focus(); // Set focus on the input field
 });
 
-// Initial call to display the first question
-showQuestions();
+// Add blur event listener to the search input
+searchInput.addEventListener('blur', function() {
+    searchInput.style.display = 'none'; // Hide the search input
+    searchInput.classList.remove('active'); // Remove the active class
+    searchIcon.style.display = 'block'; // Show the magnifying glass icon
+});
+
 

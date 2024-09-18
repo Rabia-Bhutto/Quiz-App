@@ -22,7 +22,11 @@
 }
 
 body{
-    background-color: #c6f5ed;
+    /* background-color: #c6f5ed; */
+    background: linear-gradient(to bottom, #ddfbf9, #6de2da);
+    background-repeat: no-repeat;
+    height: 100vh;
+
 }
 
 /* Nav Bar */
@@ -58,7 +62,7 @@ To add hover effects on the List Item of the Nav Bar
     position: absolute;
     width: 0;
     height: 2px;
-    background-color: white; /* You can change the color here */
+    background-color: #ff9601; /* You can change the color here */
     left: 0;
     bottom: 0;
     transition: width 0.3s ease; /* This controls the animation speed */
@@ -72,41 +76,35 @@ To add hover effects on the List Item of the Nav Bar
     background-color: #11d7df;
 }
 
-/* The Search Bar in the Nav Bar */
-.search-input {
+.logo-img{
+    width: 120px;
+    height: 30px;
+}
+
+.search-container {
+    position: relative;
+    display: inline-block;
+}
+
+#search-input {
+    padding: 5px;
+    display: none;
+    padding-left: 5px;
     border: none;
     border-radius: 5px;
     height: 30px;
 }
 
-/* Placeholder of the Search Bar in the Nav Bar */
-.search-input::placeholder {
+#search-input::placeholder {
     padding-left: 5px;
 }
 
-/* To hide the search bar by default */
-.search-bar {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-100%, -50%);
-    background-color: transparent;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 2;
-    overflow-x: hidden !important;
-}
-
-/* To show the search bar when its ID is targeted */
-#search:target {
+#search-input.active {
     display: block;
 }
 
-/* Style for the magnifying glass icon */
-.search-icon {
+#search-icon {
+    cursor: pointer;
     display: block;
     width: 50px;
     height: 60px;
@@ -125,36 +123,54 @@ To add hover effects on the List Item of the Nav Bar
     align-items: center !important;
 }
 
-/* Resizing the Search Icon */
 .magnifying-glass-icon {
     font-size: 25px;
 }
 
-/* Style for the magnifying glass icon container */
-.search-icon-container {
+.search-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
 }
 
-/* To hide the magnifying glass icon when the search bar is targeted */
-#search:target~.search-icon {
-    display: none;
+.quiz-sec{
+    height: 550px;
+    display: flex;
+    align-items: center !important;
 }
 
-/* Style for the close button */
-.close-btn {
-    display: block;
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    text-decoration: none;
-    font-size: 24px;
-    color: #65451F;
+.quiz-sub-sec{
+    background-color: #cef7f1;
+    width: 80%;
+    height: 500px;
+    display: flex;
+    justify-content: center !important;
+    box-shadow: 4px 6px 18px 1px rgba(23,64,81,0.8);
+-webkit-box-shadow: 4px 6px 18px 1px rgba(23,64,81,0.8);
+-moz-box-shadow: 4px 6px 18px 1px rgba(23,64,81,0.8);
+    /* align-items: center; */
+}
+
+.inner-quiz-div{
+    margin-top: 100px;
 }
 
 .question-head{
     color: #165366;
     font-family: inter-bold;
+}
+
+/* .content{
+    font-family: inter-reg;
+    color: #165366;
+} */
+
+.custom-font{
+    font-family: inter-reg;
+    color: #165366
+}
+
+#submitBtn{
+    display: none;
 }

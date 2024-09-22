@@ -18,29 +18,39 @@
 
 <body>
 
+    <!-- Nav Bar -->
     <nav class="custom-nav navbar navbar-expand-lg">
         <div class="container-fluid">
+
+            <!-- Logo -->
             <a class="navbar-brand text-white nav-head fw-bold fs-3" href="#">
                 <img src="Images/logo.png" class="logo-img" alt="Logo">
             </a>
+
+            <!-- THe Hamburger -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon text-white"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <!-- Menu List -->
                 <ul class="navbar-nav nav-ul me-auto mb-2 mb-lg-0">
                     <li class="nav-item nav-li">
-                        <a class="nav-link nav-a active text-white" id="nav-text" aria-current="page" href="#">Home</a>
+                        <a class="nav-link nav-a active text-white fw-bold" id="nav-text" aria-current="page"
+                            href="#">Home</a>
                     </li>
                     <li class="nav-item nav-li">
-                        <a class="nav-link nav-a active text-white" aria-current="page" href="#">About</a>
+                        <a class="nav-link nav-a active text-white fw-bold" aria-current="page" href="#">About</a>
                     </li>
                     <li class="nav-item nav-li">
-                        <a class="nav-link nav-a active text-white" aria-current="page" href="#">Login</a>
+                        <a class="nav-link nav-a active text-white fw-bold" aria-current="page" href="#">Login</a>
                     </li>
                 </ul>
 
+                <!-- Search Bar -->
                 <div class="search-container">
                     <i class="fa-solid fa-magnifying-glass magnifying-glass-icon" id="search-icon"
                         style="color: #ffffff;"></i>
@@ -51,27 +61,30 @@
         </div>
     </nav>
 
-
-    <section class="quiz-sec mt-5 d-flex justify-content-center">
+    <!-- Section containing the quiz questons -->
+    <section class="quiz-sec d-flex justify-content-center">
         <div class="quiz-sub-sec">
-            <div class="inner-quiz-div">
-                <h1 class="question-head fs-2 text-center mb-5">QUESTION</h1>
-                <!-- A container containing all the Quiz questions -->
+            <div class="inner-quiz-div mt-0">
+                <!-- Heading -->
+                <h1 class="question-head fs-1 text-center mb-5" id="heading">QUESTION</h1>
                 <div class="container-wrap d-flex justify-content-center">
-                    <div class="quiz-outter-container">
-                        <div id="quizContainer" class="custom-font">
+                    <div class="quiz-outter-container ms-5">
+                        <!-- A container containing all the Quiz questions -->
+                        <div id="quizContainer" class="custom-quiz-container fs-2">
 
 
                         </div>
+
+                        <!-- Div containing the "Previous", "Next" and the "Submit" Buttons -->
                         <div class="btn-div mt-3">
                             <!-- a button -->
-                            <button id="prevBtn" disabled>Previous</button>
-                            <button id="nextBtn" disabled>Next</button>
-                            <button id="submitBtn" disabled>submit</button>
+                            <button id="prevBtn" disabled class="fs-4 text-white">Previous</button>
+
+                            <button id="nextBtn" disabled class="fs-4 text-white">Next</button>
+
+                            <button id="submitBtn" disabled class="fs-4 text-white">submit</button>
                         </div>
                     </div>
-                    <!-- <div class="container-wrap"></div> -->
-
                 </div>
             </div>
     </section>

@@ -21,71 +21,75 @@
     font-family: inter-reg;
 }
 
-body{
-    /* background-color: #c6f5ed; */
-    background: linear-gradient(to bottom, #ddfbf9, #6de2da);
-    background-repeat: no-repeat;
+/* Targeting the body tag */
+body {
+    background:
+        repeating-linear-gradient(45deg, rgba(146, 146, 146, 0.1), rgba(146, 146, 146, 0.1) 10px, transparent 10px, transparent 20px),
+        radial-gradient(circle, #6de2da 1px, transparent 1px),
+        #6de2da;
+    background-size: 20px 20px, 20px 20px;
+    /* Sizes for the patterns */
     height: 100vh;
-
+    margin: 0;
+    padding: 0;
 }
 
 /* Nav Bar */
-nav {
+.custom-nav {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
+    background-color: #11d7df;
 }
 
-To add hover effects on the List Item of the Nav Bar
-.nav-li:hover {
-    box-shadow: 0 -5px 10px whitesmoke;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-}
-
-.nav-ul{
+/* Unordered List in the Nav Bar */
+.nav-ul {
     list-style: none;
     padding: 0;
 }
 
-.nav-a{
+/* Anchor tag of the Nav Bar */
+.nav-a {
     position: relative;
     display: inline-block;
     padding: 5px 0;
 }
 
-.nav-a::after{
+/* Applying a pseudo class to the Anchor tag of the Nav Bar */
+.nav-a::after {
     content: '';
     position: absolute;
     width: 0;
     height: 2px;
-    background-color: #ff9601; /* You can change the color here */
+    background-color: #ff9601;
     left: 0;
     bottom: 0;
-    transition: width 0.3s ease; /* This controls the animation speed */
+    transition: width 0.3s ease;
+    /* This controls the animation speed */
 }
 
-.nav-a:hover::after{
-    width: 100%; /* The underline will extend fully when hovered */
+/* Applying pseudo classes to the Anchor tag of the Nav Bar */
+.nav-a:hover::after {
+    width: 100%;
 }
 
-.custom-nav{
-    background-color: #11d7df;
-}
-
-.logo-img{
+/* Logo Image in the Nav Bar */
+.logo-img {
     width: 120px;
     height: 30px;
 }
 
+/* Div containing the Search Bar */
 .search-container {
     position: relative;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
+/* The Search Input */
 #search-input {
     padding: 5px;
     display: none;
@@ -95,19 +99,23 @@ To add hover effects on the List Item of the Nav Bar
     height: 30px;
 }
 
+/* Applying a pseudo class on the Search Input */
 #search-input::placeholder {
     padding-left: 5px;
 }
 
+/* When the Seacrh Input gets activated */
 #search-input.active {
     display: block;
 }
 
+/* The magnifying glass icon */
 #search-icon {
     cursor: pointer;
     display: block;
     width: 50px;
     height: 60px;
+    font-size: 25px;
     color: white;
     background-color: transparent;
     border-radius: 50%;
@@ -123,54 +131,154 @@ To add hover effects on the List Item of the Nav Bar
     align-items: center !important;
 }
 
-.magnifying-glass-icon {
-    font-size: 25px;
+/* MEDIA QUERY TO TARGET MEDIUM SCREEN DEVICES */
+@media screen and (min-width: 768px) and (max-width:991px) {
+
+    /* Div containing the Search Bar */
+    .search-container {
+        display: none;
+    }
+
+    /* Unordered List in the Nav Bar */
+    .nav-ul {
+        text-align: center;
+        font-size: large;
+        padding: 10px 0px;
+    }
 }
 
-.search-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+/* MEDIA QUERY TO TARGET SMALL SCREEN DEVICES */
+@media screen and (min-width: 576px) and (max-width:767px) {
+
+    /* Div containing the Search Bar */
+    .search-container {
+        display: none;
+    }
+
+    /* Unordered List in the Nav Bar */
+    .nav-ul {
+        text-align: center;
+        font-size: large;
+    }
 }
 
-.quiz-sec{
-    height: 550px;
+/* MEDIA QUERY TO TARGET EXTRA SMALL SCREEN DEVICES */
+@media screen and (max-width:575px) {
+
+    /* Div containing the Search Bar */
+    .search-container {
+        display: none;
+    }
+
+    /* Unordered List in the Nav Bar */
+    .nav-ul {
+        text-align: center;
+        font-size: large;
+    }
+}
+
+/* Section containing the quiz questions */
+.quiz-sec {
+    margin: 0;
+    padding: 0;
+    height: 90% !important;
     display: flex;
     align-items: center !important;
+    overflow-y: hidden !important;
 }
 
-.quiz-sub-sec{
-    background-color: #cef7f1;
+/* Sub Section of the Section containing the quiz questions */
+.quiz-sub-sec {
+    background-color: #a4ece8;
     width: 80%;
-    height: 500px;
+    height: 600px;
     display: flex;
     justify-content: center !important;
-    box-shadow: 4px 6px 18px 1px rgba(23,64,81,0.8);
--webkit-box-shadow: 4px 6px 18px 1px rgba(23,64,81,0.8);
--moz-box-shadow: 4px 6px 18px 1px rgba(23,64,81,0.8);
-    /* align-items: center; */
+    align-items: center;
+    box-shadow: 4px 6px 18px 1px rgba(23, 64, 81, 0.8);
+    -webkit-box-shadow: 4px 6px 18px 1px rgba(23, 64, 81, 0.8);
+    -moz-box-shadow: 4px 6px 18px 1px rgba(23, 64, 81, 0.8);
 }
 
-.inner-quiz-div{
+/* Inner div of the Section containing the quiz questions */
+.inner-quiz-div {
     margin-top: 100px;
+    /* height: 100%;
+    display: flex;
+    align-items: center; */
 }
 
-.question-head{
+/* Heading of the Section containing the quiz questions */
+.question-head {
     color: #165366;
     font-family: inter-bold;
 }
 
-/* .content{
+/* The quiz container */
+.custom-quiz-container {
     font-family: inter-reg;
     color: #165366;
-} */
-
-.custom-font{
-    font-family: inter-reg;
-    color: #165366
+    width: 100%;
 }
 
-#submitBtn{
+/* Div containing the "Previous", "Next" and the "Submit" Buttons */
+.btn-div {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
+
+/* The "Previous" Button */
+#prevBtn {
+    background-color: #ff9601;
+    color: #022f58;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 7px 5px 23px -1px rgba(108, 102, 102, 0.75);
+    -webkit-box-shadow: 7px 5px 23px -1px rgba(108, 102, 102, 0.75);
+    -moz-box-shadow: 7px 5px 23px -1px rgba(108, 102, 102, 0.75);
+    width: 180px;
+    height: 50px;
+}
+
+/* Applying a pseudo class on the "Previous" Button */
+#prevBtn:disabled {
+    background-color: #ccc;
+    color: #999;
+    box-shadow: none;
+}
+
+/* The "Next" Button */
+#nextBtn {
+    background-color: #ff9601;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 7px 5px 23px -1px rgba(108, 102, 102, 0.75);
+    -webkit-box-shadow: 7px 5px 23px -1px rgba(108, 102, 102, 0.75);
+    -moz-box-shadow: 7px 5px 23px -1px rgba(108, 102, 102, 0.75);
+    width: 180px;
+    height: 50px;
+    position: relative;
+    display: inline-block;
+    padding: 5px 0;
+}
+
+/* Applying a pseudo class on the "Next" Button */
+#nextBtn:disabled {
+    background-color: #ccc;
+    color: #999;
+    box-shadow: none;
+}
+
+/* The "Submit" Button */
+#submitBtn {
     display: none;
+    background-color: #ff9601;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 7px 5px 23px -1px rgba(108, 102, 102, 0.75);
+    -webkit-box-shadow: 7px 5px 23px -1px rgba(108, 102, 102, 0.75);
+    -moz-box-shadow: 7px 5px 23px -1px rgba(108, 102, 102, 0.75);
+    width: 150px;
+    height: 50px;
 }

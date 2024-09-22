@@ -1,38 +1,69 @@
 // An array of objects storing the quiz questions and options
 var questions = [
     {
-        question: 'Inside which HTML element do we put the JavaScript?',
-        options: ['script', 'javascrip', 'js'], // 3 options
-        correctOption: 'script',
+        question: 'Which of the following is used to declare a variable in JavaScript?',
+        options: ['let', 'var', 'const', 'All of the above'],
+        correctOption: 'All of the above',
     },
     {
-        question: 'Where is the correct place to insert a JavaScript?',
-        options: ['The head section', 'The body section', 'Both the head and body sections are correct'], // 3 options
-        correctOption: 'Both the head and body sections are correct',
+        question: 'Which of the following is not a primitive data type in JavaScript?',
+        options: ['String', 'Object', 'Boolean', 'Number'],
+        correctOption: 'Object',
     },
     {
-        question: 'What is the correct syntax for referring to an external script called "xxx.js"?',
-        options: ['script href=xxx.js', 'script name=xxx.js', 'script src=xxx.js', 'link src=xxx.js'], // 4 options
-        correctOption: 'script src=xxx.js',
+        question: 'Which method is used to convert a JSON object into a string in JavaScript?',
+        options: ['JSON.parse()', 'JSON.stringify()', 'JSON.objectify()', 'JSON.convert()'],
+        correctOption: 'JSON.stringify()',
     },
     {
-        question: 'Which one is a JavaScript framework?',
-        options: ['React', 'Laravel', 'Django', 'Spring', 'Vue'], // 5 options
-        correctOption: 'React',
-    }
-];
+        question: 'What is the purpose of the isNaN() function in JavaScript?',
+        options: ['To check if a value is a string', 'To check if a value is a number', 'To check if a value is not a number', 'To convert a value to a number'],
+        correctOption: 'To check if a value is not a number',
+    },
+    {
+        question: 'What is the correct syntax to create a function in JavaScript?',
+        options: ['function myFunction[]', 'function:myFunction()', 'function myFunction()', 'create function myFunction()'],
+        correctOption: 'function myFunction()',
+    },
+    {
+        question: 'What does the === operator do in JavaScript?',
+        options: ['Compares only the values', 'Compares both value and type', 'Compares only the types', 'Converts types before comparing values'],
+        correctOption: 'Compares both value and type',
+    },
+    {
+        question: 'Which of the following is the correct way to write an array in JavaScript?',
+        options: ['var colors = "red", "green", "blue";', 'var colors = ["red", "green", "blue"];', 'var colors = (1:"red", 2:"green", 3:"blue");', 'var colors = {"red", "green", "blue"};'],
+        correctOption: 'var colors = ["red", "green", "blue"];',
+    },
+    {
+        question: 'Which JavaScript keyword is used to check whether a property is in an object?',
+        options: ['exists', 'contains', 'in', 'has'],
+        correctOption: 'in',
+    },
+    {
+        question: 'How can you prevent the default action of an event in JavaScript?',
+        options: ['event.preventDefault()', 'event.stopPropagation()', 'event.prevent()', 'event.stopDefault()'],
+        correctOption: 'event.preventDefault()',
+    },
+    {
+        question: 'Which of the following is not a JavaScript framework/library?',
+        options: ['React', 'Vue', 'Django', 'Angular'],
+        correctOption: 'Django',
+    },
+]
 
 // Variables to keep track of the current question, score, and buttons
 var index = 0;
 var score = 0;
 var nextBtn = document.getElementById("nextBtn");
 var prevBtn = document.getElementById("prevBtn");
+var quizHead = document.getElementById("heading");
 var questionBox = document.getElementById("quizContainer");
 
 // Function to update and display the current question
 function updateQuestion() {
     var currentQuestion = questions[index];
-    var questionHTML = `<p class="fw-bold">${index + 1}. ${currentQuestion.question}</p>`;  // Add dynamic numbering
+    var questionHTML = `<p class="fw-bold q-content">${index + 1}. ${currentQuestion.question}</p>`;  // Add dynamic numbering
 
     // Generate the options dynamically based on how many options are in the current question
     for (var i = 0; i < currentQuestion.options.length; i++) {
@@ -46,7 +77,7 @@ function updateQuestion() {
 
     // Enable the Next button only when an option is selected
     selectingOptions();
-    
+
     // Update the state of the Previous button (enable/disable)
     updatePrevButtonState();
 
@@ -66,7 +97,7 @@ function updateQuestion() {
 function nextButtonHandler() {
     var options = document.getElementsByName("option");
     var selectedOption;
-    
+
     // Find the selected option
     for (var i = 0; i < options.length; i++) {
         if (options[i].checked) {
@@ -108,7 +139,10 @@ function submitQuiz() {
     }
 
     // Display the final score
-    questionBox.innerHTML = `Quiz completed! Your score is ${score}/${questions.length}`;
+    quizHead.innerHTML = `QUIZ COMPLETED!`
+    questionBox.innerHTML = `<p> <strong>Total Questions:</strong> ${questions.length}</p>
+                             <p> <strong>Score:</strong> ${score} </p>
+                             <p> <strong>Percentage:</strong> ${(score / questions.length) * 100}%`;
     nextBtn.style.display = "none";  // Hide the Next/Submit button
     prevBtn.style.display = "none";  // Hide the Previous button
 }
@@ -123,7 +157,7 @@ function updatePrevButtonState() {
 }
 
 // Event listener for the Previous button
-prevBtn.addEventListener('click', function() {
+prevBtn.addEventListener('click', function () {
     if (index > 0) {
         index--;  // Move to the previous question
         updateQuestion();  // Update the displayed question
@@ -134,11 +168,12 @@ prevBtn.addEventListener('click', function() {
 function selectingOptions() {
     var options = document.getElementsByName("option");
     for (var i = 0; i < options.length; i++) {
-        options[i].addEventListener("click", function() {
+        options[i].addEventListener("click", function () {
             nextBtn.disabled = false;  // Enable Next button when an option is selected
         });
     }
 }
+
 
 // Initialize the quiz by displaying the first question and disabling the Previous button
 updateQuestion();
@@ -153,7 +188,7 @@ const searchIcon = document.getElementById('search-icon');
 const searchInput = document.getElementById('search-input');
 
 // Add event listener to the search icon
-searchIcon.addEventListener('click', function() {
+searchIcon.addEventListener('click', function () {
     searchIcon.style.display = 'none'; // Hide the magnifying glass icon
     searchInput.classList.add('active'); // Show the search input
     searchInput.style.display = 'block'; // Display the search bar
@@ -161,10 +196,8 @@ searchIcon.addEventListener('click', function() {
 });
 
 // Add blur event listener to the search input
-searchInput.addEventListener('blur', function() {
+searchInput.addEventListener('blur', function () {
     searchInput.style.display = 'none'; // Hide the search input
     searchInput.classList.remove('active'); // Remove the active class
     searchIcon.style.display = 'block'; // Show the magnifying glass icon
 });
-
-
